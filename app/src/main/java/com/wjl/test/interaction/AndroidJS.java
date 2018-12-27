@@ -10,9 +10,9 @@ import com.wjl.test.R;
 /**
  * author: WuJinLi
  * time  : 2018/12/26
- * desc  :
+ * desc  : js调用android原生发的实现类，类中包含的js需要android原生实现的所有的方法
  */
-public class AndroidJS {
+public class AndroidJS extends Object {
     private Context context;
 
     public AndroidJS(Context context) {
@@ -32,7 +32,7 @@ public class AndroidJS {
     }
 
     @JavascriptInterface
-    public void showToast() {
-        Toast.makeText(context, "这是android原生的toast方法", Toast.LENGTH_SHORT).show();
+    public void showToast(String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 }

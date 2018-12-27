@@ -3,18 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-
-
-    <script>
-			function doAlert(){
-			alert('this function in h5')
-		}
-    </script>
 </head>
-<body>
 
-<input type="button" onclick="AndroidJS.showToast()" value="android的toast"/><br><br>
-<input type="button" onclick="AndroidJS.showBookList()" value="android的原生方法"/>
+
+<script>
+		//js调用原生的方法，方式是通过原生（android）中添加注解的方式
+		function jsCallAndroidByAddJavascriptInterface(){
+			AndroidJS.showToast("这是js调用android原生的方法，通过方式是addJavascriptInterface")
+		}
+
+		//js调用原生的方法，使用原生webview属性WebViewClient
+		function jsCallAndroidByWebViewClient(){
+			// *约定的url协议为：js://webview?arg1=111&arg2=222*/
+			document.location='js://webview?arg1=111&arg2=222'
+		}
+		//js调用原生的方法，使用原生webview属性WebChromeClient
+		function jsCallAndroidByWebChromeClient(){
+			var result=prompt("js://demo?arg1=111&arg2=222")
+			<!--alert('demo :'+result)-->
+		}
+		//原生调用js的方法，这里的原生意味着是android
+		function androidCallJs(){
+			alert('这是andrid原生调用js的方法，通过方式是loadurl()或者是evaluateJavascript()')
+		}
+	</script>
+<body>
+<p>js调用android方法的三种方式</p>
+<input type="button" onclick="jsCallAndroidByAddJavascriptInterface()" value="addJavascriptInterface调用android方法"/><br><br>
+<input type="button" onclick="jsCallAndroidByWebViewClient()" value="WebViewClient调用android方法"/><br><br>
+<input type="button" onclick="jsCallAndroidByWebChromeClient()" value="WebChromeClient调用android方法"/><br>
 
 </body>
 </html>
